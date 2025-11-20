@@ -2,7 +2,7 @@
 Market tech stack analysis
 
 
-![Market Tech Stack Analysis Stockholm](./doc/skills_Sweden.png)
+![Market Tech Stack Analysis Sweden](./doc/skills_Sweden.png)
 
 See more example charts in [doc/charts.md](./doc/charts.md)
 
