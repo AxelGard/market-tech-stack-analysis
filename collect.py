@@ -23,7 +23,7 @@ def get_relevant_skills():
     return dict(users_of_languages)
 
 
-def search_linkedin_jobs(title: str, location: str, num_jobs: int):
+def search_linkedin_jobs(title: str, location: str, num_jobs: int, output_path:str):
     users_of_languages = get_relevant_skills()
     prg_skills = set(users_of_languages.keys())
     job_list = []
@@ -151,7 +151,7 @@ def search_linkedin_jobs(title: str, location: str, num_jobs: int):
     )
 
     one_hot_df = pd.DataFrame.from_dict(one_hot_skills, orient='index').transpose()
-    one_hot_df.to_csv(f'./results/one_hot_skills_{title}_{location}_{datetime.datetime.now().strftime("%Y-%m-%d")}.csv', index=False)
+    one_hot_df.to_csv(f'{output_path}one_hot_skills_{title}_{location}_{datetime.datetime.now().strftime("%Y-%m-%d")}.csv', index=False)
 
     companies_used_skill = {}
     for skill, companies in one_hot_skills.items():
@@ -159,7 +159,7 @@ def search_linkedin_jobs(title: str, location: str, num_jobs: int):
 
     companies_used_skill_df = pd.DataFrame.from_dict(companies_used_skill, orient='index', columns=['Number of Companies']).reset_index()
     companies_used_skill_df = companies_used_skill_df.sort_values(by='Number of Companies', ascending=False).reset_index(drop=True)
-    companies_used_skill_df.to_csv(f'./results/skill_usage_{title}_{location}_{datetime.datetime.now().strftime("%Y-%m-%d")}.csv', index=False)
+    companies_used_skill_df.to_csv(f'{output_path}skill_usage_{title}_{location}_{datetime.datetime.now().strftime("%Y-%m-%d")}.csv', index=False)
 
 
 def main() -> int:
@@ -176,6 +176,12 @@ def main() -> int:
     parser.add_argument(
         "-l", "--location", type=str, required=True, help="Location to search in."
     )
+
+    parser.add_argument(
+            "--output", 
+            default="./results/",
+            type=str, help="output path (defualt: ./results/)"
+    )
     parser.add_argument(
         "-n",
         "--num_jobs",
@@ -188,10 +194,11 @@ def main() -> int:
     title = args.title
     location = args.location
     NUMBER_OF_JOBS_TO_FETCH = args.num_jobs
+    output_path = args.output
 
-    os.makedirs("./results", exist_ok=True)  # will dump results here
+    os.makedirs(output_path, exist_ok=True)  # will dump results here
 
-    search_linkedin_jobs(title, location, NUMBER_OF_JOBS_TO_FETCH)
+    search_linkedin_jobs(title, location, NUMBER_OF_JOBS_TO_FETCH, output_path)
 
     return 0
 
