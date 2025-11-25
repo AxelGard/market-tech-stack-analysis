@@ -1,10 +1,26 @@
-# market-tech-stack-analysis
+# Linkedin jobs scrapping
+
 Market tech stack analysis
 
+## Stockholm, Sweden
 
-![Market Tech Stack Analysis Stockholm](https://github.com/AxelGard/market-tech-stack-analysis/blob/master/doc/Skills_Sweden.png?raw=true)
+| Skill	| Number of Job Postings |
+| ---------------------|------------------------|
+| 	Git	| 129 | 
+| 	Java |	99 |
+| 	Python |	83 |
+| 	AWS |	76 |
+| 	CI/CD |	76 |
+| 	SQL	| 75 |
+| 	React |	71 |
+| 	Rust |	68 |
+| 	DevOps |	66 |
+| 	Azure |	62 |
+
 
 See more example charts in [doc/charts.md](./doc/charts.md)
+
+## About
 
 This repository contains a Jupyter notebook that collects data on the demand for various programming languages in job postings for a specified job title and location using web scraping techniques. The collected data is then analyzed and visualized to provide insights into the most sought-after programming languages in the job market for the given criteria.
 
